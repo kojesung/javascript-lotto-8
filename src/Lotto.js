@@ -12,7 +12,15 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  // TODO: 추가 검증 구현(숫자 범위, 중복)
+
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  getSortedNumbers() {
+    return [...this.#numbers].sort((a, b) => a - b);
+  }
 }
 
 export default Lotto;
