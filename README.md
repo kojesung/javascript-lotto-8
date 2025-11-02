@@ -28,10 +28,9 @@
 
 ## 파싱
 
-- [ ] 로또 번호 파싱한다.
+- [x] 사용자 입력 파싱
   - 사용자가 입력한 금액을 숫자로 파싱한다.
   - 사용자 입력으로 생성된 당첨 번호를 `[number1, number2, number3, number4, number5, number6]`과 같은 형식으로 파싱한다.
-  - `MissionUtils.Random.pickUniqueNumbersInRange()`로 발행한 로또 번호를 `[number1, number2, number3, number4, number5, number6]`과 같은 형식으로 파싱한다.
   - 사용자에게 입력받은 보너스 번호를 숫자로 파싱한다.
 
 ## 로또 발행

@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Lotto from "./Lotto.js";
 
@@ -8,6 +8,8 @@ class App {
     const winNumbers = await InputView.inputWinNumbers();
     const bonusNumber = await InputView.inputBonusNumber();
     const lotto = new Lotto([1, 2123, 555, 4, 5, 6]);
+    const a = Random.pickUniqueNumbersInRange(1, 45, 6);
+    console.log(a);
   }
 }
 
