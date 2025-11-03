@@ -30,7 +30,7 @@ class LottoMatcher {
     if (!purchasedLotto || typeof purchasedLotto.getNumbers !== "function")
       throw new Error("[ERROR] 올바른 구매 로또가 아닙니다.(정상적인 Lotto 객체가 아님)");
 
-    if (winLotto || typeof winLotto.getNumbers !== "function")
+    if (!winLotto || typeof winLotto.getNumbers !== "function")
       throw new Error("[ERROR] 올바른 당첨 로또가 아닙니다.(정상적인 Lotto 객체가 아님)");
 
     if (typeof bonusNumber !== "number" || bonusNumber < LOTTO.MIN_NUMBER || bonusNumber > LOTTO.MAX_NUMBER)
