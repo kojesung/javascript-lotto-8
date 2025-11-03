@@ -1,4 +1,4 @@
-import { MATCH_COUNT } from "./constants";
+import { MATCH_COUNT } from "./constants.js";
 
 class LottoMatcher {
   static getRank(purchasedLotto, winLotto, bonusNumber) {
@@ -8,12 +8,12 @@ class LottoMatcher {
   }
 
   static #getMatchCount(purchasedLotto, winLotto) {
-    const purchasedNumbers = purchasedLotto.getSortedNumbers();
-    return purchasedNumbers.filter((number) => winLotto.includes(number)).length;
+    const purchasedNumbers = purchasedLotto.getNumbers();
+    return purchasedNumbers.filter((number) => winLotto.getNumbers().includes(number)).length;
   }
 
   static #isBonusMatch(purchasedLotto, bonusNumber) {
-    return purchasedLotto.includes(bonusNumber);
+    return purchasedLotto.getNumbers().includes(bonusNumber);
   }
 
   static #determineRank(matchCount, hasBonus) {

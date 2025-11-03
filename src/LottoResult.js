@@ -1,5 +1,5 @@
-import LottoMatcher from "./\bLottoMatcher.js";
-import { PRIZE } from "./constants";
+import LottoMatcher from "./LottoMatcher.js";
+import { PRIZE } from "./constants.js";
 
 class LottoResult {
   #statistics = {

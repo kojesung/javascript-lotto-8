@@ -12,7 +12,7 @@ class InputParser {
     return numbers;
   }
 
-  static parseBonusNumbers(input) {
+  static parseBonusNumber(input) {
     return Number(input);
   }
 }
