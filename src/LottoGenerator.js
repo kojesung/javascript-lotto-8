@@ -16,13 +16,9 @@ class LottoGenerator {
   }
 
   static #validateCount(count) {
-    if (typeof count !== "number" || !Number.isInteger(count)) {
-      throw new Error("[ERROR] 로또 개수는 정수여야 합니다.");
-    }
+    if (typeof count !== "number" || !Number.isInteger(count)) throw new Error("[ERROR] 로또 개수는 정수여야 합니다.");
 
-    if (count <= 0) {
-      throw new Error("[ERROR] 로또 개수는 양수여야 합니다.");
-    }
+    if (count <= 0) throw new Error("[ERROR] 로또 개수는 양수여야 합니다.");
   }
 }
 

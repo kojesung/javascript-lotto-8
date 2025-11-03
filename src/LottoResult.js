@@ -18,9 +18,7 @@ class LottoResult {
   #calculateStatics(purchasedLottos, winLotto, bonusNumber) {
     for (const purchasedLotto of purchasedLottos) {
       const rank = LottoMatcher.getRank(purchasedLotto, winLotto, bonusNumber);
-      if (rank !== "NONE") {
-        this.#statistics[rank]++;
-      }
+      if (rank !== "NONE") this.#statistics[rank]++;
     }
   }
 
