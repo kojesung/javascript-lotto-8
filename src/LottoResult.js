@@ -11,6 +11,7 @@ class LottoResult {
   };
   #purchaseAmount;
   constructor(purchaseAmount, purchasedLottos, winLotto, bonusNumber) {
+    this.#validate(purchaseAmount, purchasedLottos);
     this.#purchaseAmount = purchaseAmount;
     this.#calculateStatics(purchasedLottos, winLotto, bonusNumber);
   }
@@ -47,6 +48,16 @@ class LottoResult {
       fourth: this.#statistics.FOURTH,
       fifth: this.#statistics.FIFTH,
     };
+  }
+
+  #validate(purchaseAmount, purchasedLottos) {
+    if (Number.isNaN(purchaseAmount)) throw new Error("[ERROR] 구입 금액은 유효한 숫자여야 합니다.");
+
+    if (!Number.isInteger(purchaseAmount)) throw new Error("[ERROR] 구입 금액은 정수여야 합니다.");
+
+    if (purchaseAmount <= 0) throw new Error("[ERROR] 구입 금액은 양수여야 합니다.");
+
+    if (!purchasedLottos || purchasedLottos.length === 0) throw new Error("[ERROR] 구매한 로또가 없습니다.");
   }
 }
 export default LottoResult;
