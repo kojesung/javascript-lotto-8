@@ -1,3 +1,5 @@
+import { LOTTO } from "./constants.js";
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,20 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.COUNT) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-  }
 
-  // TODO: 추가 검증 구현(숫자 범위, 중복)
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    }
+
+    numbers.forEach((number) => {
+      if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
+        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+    });
+  }
 
   getNumbers() {
     return this.#numbers;
