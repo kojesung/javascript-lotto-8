@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import InputParser from "./InputParser.js";
 import InputView from "./InputView.js";
 import Lotto from "./Lotto.js";
@@ -9,23 +10,19 @@ import { LOTTO } from "./constants.js";
 
 class App {
   async run() {
-    const purchaseAmountInput = await InputView.inputPurchaseAmount();
-    const purchaseAmount = InputParser.parsePurchaseAmount(purchaseAmountInput);
+    const purchaseAmount = await this.#getPurchaseAmount();
     const count = purchaseAmount / LOTTO.PRICE;
 
     const purchasedLottos = LottoGenerator.generate(count);
-
     OutputView.printPurchasedNumber(count);
 
     const formattedLottos = purchasedLottos.map((lotto) => OutputFormatter.formatLottoNumbers(lotto));
     OutputView.printFormattedLottoList(formattedLottos);
 
-    const winNumbersInput = await InputView.inputWinNumbers();
-    const winningNumbers = InputParser.parseWinningNumbers(winNumbersInput);
+    const winningNumbers = await this.#getWinningNumbers();
     const winningLotto = new Lotto(winningNumbers);
 
-    const bonusNumberInput = await InputView.inputBonusNumber();
-    const bonusNumber = InputParser.parseBonusNumber(bonusNumberInput, winningNumbers);
+    const bonusNumber = await this.#getBonusNumber(winningNumbers);
 
     const result = new LottoResult(purchaseAmount, purchasedLottos, winningLotto, bonusNumber);
 
@@ -34,6 +31,39 @@ class App {
 
     OutputView.printResultStatistics(statistics);
     OutputView.printRateOfReturn(profitRate);
+  }
+
+  async #getPurchaseAmount() {
+    while (true) {
+      try {
+        const input = await InputView.inputPurchaseAmount();
+        return InputParser.parsePurchaseAmount(input);
+      } catch (error) {
+        Console.print(error.message);
+      }
+    }
+  }
+
+  async #getWinningNumbers() {
+    while (true) {
+      try {
+        const input = await InputView.inputWinNumbers();
+        return InputParser.parseWinningNumbers(input);
+      } catch (error) {
+        Console.print(error.message);
+      }
+    }
+  }
+
+  async #getBonusNumber(winningNumbers) {
+    while (true) {
+      try {
+        const input = await InputView.inputBonusNumber();
+        return InputParser.parseBonusNumber(input, winningNumbers);
+      } catch (error) {
+        Console.print(error.message);
+      }
+    }
   }
 }
 
